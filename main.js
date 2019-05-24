@@ -1,14 +1,12 @@
 'use strict';
 
-const trs = document.querySelectorAll('tr');
-const trsArr0 = [];
-trs.forEach(el => trsArr0.push(el));
+const rows = document.querySelectorAll('tbody > tr');
+const arrayFromRows = [];
+rows.forEach(el => arrayFromRows.push(el));
 
-const trsArr = trsArr0.slice(1);
+const container = document.querySelector('#grid');
 
-const sortEvent = document.querySelector('#grid');
-
-	sortEvent.onclick = (event) => {
+	container.onclick = (event) => {
 		const target = event.target;
 		if (target.tagName != "TH") return; 
 			if (target.getAttribute('data-type') === 'number') { 
@@ -16,27 +14,27 @@ const sortEvent = document.querySelector('#grid');
 		} else {
 			sortTableByName();
 	}
-	const tbody = document.querySelector('tbody');
-	trsArr.forEach((el) => {
-	tbody.append(el);})
+	const tBody = document.querySelector('tbody');
+	arrayFromRows.forEach((el) => {
+	tBody.append(el);})
 };
 
 const sortTableByAge = () => {
 
-	trs.forEach((el) => {
+	rows.forEach((el) => {
 		 
 		const sortCallback = (el1, el2) => {
 		 
 		return el1.firstElementChild.textContent - el2.firstElementChild.textContent;}
-		trsArr.sort(sortCallback);});
+		arrayFromRows.sort(sortCallback);});
 };
 
 const sortTableByName = () => {
 
- 	trs.forEach((el) => {
+ 	rows.forEach((el) => {
 		 
 		const sortCallback = (el1, el2) => {
 		 	
 		return el1.lastElementChild.textContent.localeCompare(el2.lastElementChild.textContent);}
-		trsArr.sort(sortCallback)})
+		arrayFromRows.sort(sortCallback)})
 };
